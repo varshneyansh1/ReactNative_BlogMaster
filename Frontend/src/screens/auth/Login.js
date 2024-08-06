@@ -1,13 +1,13 @@
 import {Alert, StyleSheet, Text, View} from 'react-native';
-import React, {useState,useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import SubmitButton from '../../components/Forms/SubmitButton';
 import InputBox from '../../components/InputBox';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { AuthContext } from '../../../context/authContext';
+import {AuthContext} from '../../../context/authContext';
 const Login = ({navigation}) => {
   // global state
-  const [state,setState] = useContext(AuthContext)
+  const [state, setState] = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
@@ -20,21 +20,25 @@ const Login = ({navigation}) => {
         setLoading(false);
         return;
       }
+      if (!email.includes('@')) {
+        Alert.alert('Enter valid Email');
+        setLoading(false);
+        return;
+      }
+      if (password.length < 6) {
+        Alert.alert('Password should be of atleast six length');
+        setLoading(false);
+        return;
+      }
       setLoading(false);
-      const {data} = await axios.post(
-        '/auth/login',
-        {email, password},
-      );
-       setState(data)
+      const {data} = await axios.post('/auth/login', {email, password});
+      setState(data);
       // saving data locally
       await AsyncStorage.setItem('@auth', JSON.stringify(data));
 
-      
       Alert.alert(data && data.message);
-      
-      navigation.navigate('Home')
 
-      
+      navigation.navigate('Home');
     } catch (error) {
       Alert.alert(error.response.data.message);
       setLoading(false);
@@ -105,7 +109,7 @@ const styles = StyleSheet.create({
   loginText: {
     textAlign: 'center',
     fontSize: 17,
-    color:"black"
+    color: 'black',
   },
   link: {
     color: 'green',
