@@ -23,15 +23,15 @@ Here are some screenshots of the app in action:
 
 <div align="center">
 
-### Login, Register, and Home Screen
+### Login and Register
 <img src="assets/1.jpg" height="400">
 <img src="assets/2.jpg" height="400">
 
-### Create Post, My Post, and Account Details
+### HomePage and Create Post 
 <img src="assets/3.jpg" height="400">
 <img src="assets/4.jpg" height="400">
 
-### My Post, Account Details, and Settings
+### My Post and Account Details
 <img src="assets/5.jpg" height="400">
 <img src="assets/6.jpg" height="400">
 
